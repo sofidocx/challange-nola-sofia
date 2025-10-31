@@ -1,0 +1,11 @@
+# Ignorar pastas de dependências
+node_modules/
+
+# Ignorar os dados do banco de dados do Docker
+postgres_data/
+
+# Ignorar caches do Python 
+__pycache__/
+
+# Ignorar arquivos de sistema
+.DS_Store
