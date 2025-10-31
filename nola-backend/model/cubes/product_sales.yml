@@ -1,0 +1,24 @@
+
+cubes:
+  - name: product_sales
+    sql_table: "public.product_sales"
+
+    joins:
+      - name: sales
+        sql: "{CUBE}.sale_id = {sales}.id"
+        relationship: belongs_to
+      
+      - name: products
+        sql: "{CUBE}.product_id = {products}.id"
+        relationship: belongs_to
+
+    dimensions:
+      - name: id
+        sql: id
+        type: string
+        primary_key: true
+
+    measures:
+      - name: quantidade_vendida
+        type: sum
+        sql: quantity

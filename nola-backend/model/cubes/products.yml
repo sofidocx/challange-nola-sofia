@@ -1,0 +1,19 @@
+
+cubes:
+  - name: products
+    sql_table: "public.products"
+    
+    joins:
+      - name: product_sales
+        sql: "{CUBE}.id = {product_sales}.product_id"
+        relationship: has_many
+
+    dimensions:
+      - name: id
+        sql: id
+        type: string
+        primary_key: true
+
+      - name: nome
+        sql: name
+        type: string

@@ -1,0 +1,19 @@
+
+cubes:
+  - name: stores
+    sql_table: "public.stores" # tabela stores do banco
+    description: "Lojas e restaurantes."
+
+    dimensions:
+      - name: id
+        sql: id
+        type: string
+        primary_key: true # chave primária
+
+      - name: nome
+        sql: name
+        type: string
+
+      - name: cidade
+        sql: city
+        type: string

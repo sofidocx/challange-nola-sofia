@@ -1,0 +1,67 @@
+
+cubes:
+  - name: sales  
+    sql_table: "public.sales" 
+    description: "Contém todas as vendas registradas."
+
+    joins:
+      - name: channels # nome do cubo a se conectar
+        sql: "{CUBE}.channel_id = {channels}.id" # condição de junção
+        relationship: many_to_one # muitas vendas para um canal
+
+      - name: stores
+        sql: "{CUBE}.store_id = {stores}.id" # junção com lojas
+        relationship: many_to_one # muitas vendas para uma loja
+      
+      - name: product_sales
+        sql: "{CUBE}.id = {product_sales}.sale_id"
+        relationship: has_many
+
+    measures:
+      # Medidas de Maria (o que a Maria quer medir)
+
+      - name: total_de_vendas
+        type: count
+        description: "Número total de vendas registradas."
+
+      - name: faturamento
+        type: sum
+        sql: total_amount  # coluna no banco
+        format: currency   # formatação monetária
+
+      - name: ticket_medio
+        type: avg  # media (average)
+        sql: total_amount # coluna para calcular a média
+        format: currency
+
+    dimensions:
+      # textos que maria quer agrupar ou filtrar
+      - name: id
+        type: string
+        sql: id  # coluna do banco
+        primary_key: true  # chave primária
+
+      - name: status
+        type: string
+        sql: sale_status_desc # coluna do banco
+
+      - name: canal_id
+        type: string
+        sql: channel_id # coluna do banco
+      - name: dia_da_semana
+        type: string
+        # TO_CHAR com 'Dy' dá 'Seg', 'Ter', 'Qua' (PostgreSQL)
+        sql: TO_CHAR({CUBE}.created_at, 'Dy')
+
+      - name: hora_do_dia
+        type: number
+        # EXTRACT(HOUR ...) dá 0-23
+        sql: EXTRACT(HOUR FROM {CUBE}.created_at)
+
+      - name: created_at
+        sql: "{CUBE}.created_at"
+        type: time
+
+      - name: tempo_entrega_minutos
+        type: number
+        sql: delivery_seconds / 60
