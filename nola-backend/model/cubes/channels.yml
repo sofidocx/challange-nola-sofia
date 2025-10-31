@@ -1,0 +1,25 @@
+
+cubes:
+  - name: channels
+    sql_table: "public.channels" # nome da tabela no banco
+    description: "Canais de venda (iFood, Rappi, Balcão)."
+
+    measures:
+      - name: total_de_vendas
+        type: count
+        description: "Número de vendas neste canal."
+        # conta total de canais (não de vendas)
+
+    dimensions:
+      - name: id
+        sql: id
+        type: string
+        primary_key: true # id é a chave
+
+      - name: nome
+        sql: name
+        type: string
+
+      - name: tipo
+        sql: type
+        type: string # 'P' (Presencial) ou 'D' (Delivery)
