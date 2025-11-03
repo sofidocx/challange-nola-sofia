@@ -23,7 +23,7 @@ Diagrama do Fluxo de Dados
 
 Este diagrama ilustra como a solução funciona, desde a interação da usuária até a busca no banco de dados.
 
-![Resultado Diagrama](screenshots/screenshots\diagrama-flowchart.png)
+![Resultado Diagrama](screenshots/diagrama-flowchart.png)
 
 ## 3. A Solução Focada no Usuário (UX/UI)
 
