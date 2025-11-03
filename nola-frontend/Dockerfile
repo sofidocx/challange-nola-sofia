@@ -2,6 +2,12 @@ FROM node:22-alpine as build
 
 WORKDIR /app
 
+ARG VITE_CUBEJS_TOKEN
+ARG VITE_API_URL
+
+ENV VITE_CUBEJS_TOKEN=${VITE_CUBEJS_TOKEN}
+ENV VITE_API_URL=${VITE_API_URL}
+
 COPY package*.json ./
 
 RUN npm install
