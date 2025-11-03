@@ -43,50 +43,82 @@ Siga estes passos a partir da pasta **RAIZ** do projeto (`/NOLA-GOD-LEVEL`).
 
 Primeiro, precisamos subir o contêiner do PostgreSQL e popular o banco com os 500.000+ registros de vendas.
 
+### 1. Gerador de dados (Docker)
+
+Navegue até a pasta do gerador de dados e execute os comandos abaixo:
+
 ```bash
-# 1. Navegue até a pasta do gerador de dados
+# Vá para a pasta do gerador de dados
 cd nola-god-level
+```
 
-# 2. (Se for a primeira vez) Construa a imagem do gerador de dados
+```bash
+# (Se for a primeira vez) Construa a imagem do gerador de dados
 docker compose build --no-cache data-generator
+```
 
-# 3. Inicie o contêiner do banco de dados (em background)
+```bash
+# Inicie o contêiner do PostgreSQL em background
 docker compose up -d postgres
+```
 
-# 4. Rode o script de geração de dados (isso levará de 5 a 15 minutos)
+```bash
+# Rode o script de geração de dados (pode levar 5–15 minutos)
 docker compose run --rm data-generator
+```
 
-# 5. Volte para a pasta raiz
+```bash
+# Volte para a pasta raiz do monorepo
 cd ..
+```
 
-# Após este passo, você terá um banco Postgres rodando na porta 5432 com 500k+ vendas.
+> Observação: após estes comandos, o Postgres deve estar rodando na porta 5432 com ~500k+ registros.
 
-#Passo 2: Iniciar o Back-end (Cube.js)
-###Em um novo terminal, navegue até a pasta do back-end e inicie o servidor.
+---
 
-# 1. Navegue até a pasta do back-end
+### 2. Iniciar o Back-end (Cube.js)
+
+Em um novo terminal, execute:
+
+```bash
+# Entre na pasta do back-end
 cd nola-backend
+```
 
-# 2. Instale as dependências
+```bash
+# Instale dependências
 npm install
+```
 
-# 3. Inicie o servidor de desenvolvimento
+```bash
+# Inicie o servidor de desenvolvimento (Cube.js)
 npm run dev
-#O seu servidor de BI (back-end) agora está rodando em http://localhost:4000.
+```
 
-Passo 3: Iniciar o Front-end (React)
-###Em um terceiro terminal, navegue até a pasta do front-end e inicie a aplicação.
+> URL do back-end: http://localhost:4000
 
-# 1. Navegue até a pasta do front-end
+---
+
+### 3. Iniciar o Front-end (React)
+
+Em outro terminal, execute:
+
+```bash
+# Entre na pasta do front-end
 cd nola-frontend
+```
 
-# 2. Instale as dependências
-# (Usamos --legacy-peer-deps para resolver conflitos de dev do ESLint)
+```bash
+# Instale dependências (usa --legacy-peer-deps para contornar conflitos de peer)
 npm install --legacy-peer-deps
+```
 
-# 3. Inicie o servidor de desenvolvimento
+```bash
+# Inicie o servidor de desenvolvimento (Vite)
 npm run dev
-#O seu dashboard (front-end) agora está rodando em http://localhost:5173.
+```
+
+> URL do front-end: http://localhost:5173
 
 #Passo 4: Testar a Solução
 ###Abra seu navegador e acesse:
