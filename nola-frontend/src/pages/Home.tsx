@@ -6,12 +6,11 @@ import { ResponsiveContainer, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Le
 
 //qual o faturamento total do mes? 
 
-const QUERY_FATURAMENTO_MES: Query = {
+const QUERY_FATURAMENTO_TOTAL: Query = {
     measures: ['sales.faturamento'],
     timeDimensions: [{
         dimension: 'sales.created_at',
-        granularity: 'month',
-        dateRange: 'this month'
+        dateRange: 'last 6 months'
     }]
 };
 
@@ -80,7 +79,10 @@ function Top10Chart() {
 
 function Home() {
 
-    const { resultSet: kpiResultSet, isLoading: kpiLoading, error: kpiError } = useCubeQuery(QUERY_FATURAMENTO_MES);
+    const { resultSet: kpiResultSet, isLoading: kpiLoading, error: kpiError } = useCubeQuery(QUERY_FATURAMENTO_TOTAL);
+
+    console.log(kpiResultSet)
+
 
     let faturamentoFormatado = "R$ 0,00";
     if (kpiResultSet) {
@@ -90,8 +92,11 @@ function Home() {
             style: 'currency',
             currency: 'BRL',
         }).format(valor);
+
+        console.log(faturamentoFormatado)
     }
 
+    
     if (kpiError) {
         return <div>{kpiError.message}</div>
     }
@@ -103,7 +108,7 @@ function Home() {
 
             <div className="kpi-container">
                 <KpiCard
-                    titulo="Faturamento (Este Mês)"
+                    titulo="Faturamento (Ultimos 6 meses)"
                     valor={faturamentoFormatado}
                     isLoading={kpiLoading}
                 />
