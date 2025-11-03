@@ -7,7 +7,9 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   
-  
+  server: {
+    allowedHosts: ["dashboardmaria.soffidev.work"]
+  },
   resolve: {
     alias: {
       'react': path.resolve(__dirname, 'node_modules/react'),
