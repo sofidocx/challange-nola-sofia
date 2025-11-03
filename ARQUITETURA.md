@@ -23,21 +23,68 @@ Diagrama do Fluxo de Dados
 
 Este diagrama ilustra como a solução funciona, desde a interação da usuária até a busca no banco de dados.
 
+```mermaid
 flowchart TD
-    %% 1. Definição das Caixas (Componentes)
-    A([<img src='[https://cdn-icons-png.flaticon.com/512/1053/1053244.png](https://cdn-icons-png.flaticon.com/512/1053/1053244.png)' width='50' /><br/><b>Usuária (Maria)</b><br/>Navegador])
-    B[<img src='[https://cdn-icons-png.flaticon.com/512/1199/1199124.png](https://cdn-icons-png.flaticon.com/512/1199/1199124.png)' width='50' /><br/><b>Aplicação Front-end (React)</b><br/>(nola-frontend)<br/>UI com 3 Páginas (Home, Explorar, Comparar)]
-    C[<img src='[https://cdn-icons-png.flaticon.com/512/875/875209.png](https://cdn-icons-png.flaticon.com/512/875/875209.png)' width='50' /><br/><b>Servidor de BI (Cube.js)</b><br/>(nola-backend)<br/>Camada Semântica (modelos .yml)]
-    D[(<img src='[https://cdn-icons-png.flaticon.com/512/3294/3294833.png](https://cdn-icons-png.flaticon.com/512/3294/3294833.png)' width='50' /><br/><b>Banco de Dados (Postgres)</b><br/>(nola-god-level/data-generator)<br/>500k+ Vendas (OLTP))]
+%% 1. Definição das Caixas (Componentes)
+A([<img src='https://cdn-icons-png.flaticon.com/512/1053/1053244.png' width='50' />
 
-    %% 2. Definição do Fluxo (Setas)
-    A -- "1. Visita a página / Clica" --> B
-    B -- "2. Pergunta JSON (Simples)<br/>{ measures: [...], dimensions: [...] }" --> C
-    C -- "3. Query SQL Otimizada (Complexa)<br/>(com JOINs e GROUP BY)" --> D
-    D -- "4. Dados Agregados" --> C
-    C -- "5. Resposta JSON Pronta" --> B
-    B -- "6. Renderiza Gráfico Interativo" --> A
 
+
+<b>Usuária (Maria)</b>
+
+
+
+Navegador])
+B[<img src='https://cdn-icons-png.flaticon.com/512/1199/1199124.png' width='50' />
+
+
+
+<b>Aplicação Front-end (React)</b>
+
+
+
+(nola-frontend)
+
+
+
+UI com 3 Páginas (Home, Explorar, Comparar)]
+C[<img src='https://cdn-icons-png.flaticon.com/512/875/875209.png' width='50' />
+
+
+
+<b>Servidor de BI (Cube.js)</b>
+
+
+
+(nola-backend)
+
+
+
+Camada Semântica (modelos .yml)]
+D[(<img src='https://cdn-icons-png.flaticon.com/512/3294/3294833.png' width='50' />
+
+
+
+<b>Banco de Dados (Postgres)</b>
+
+
+
+(nola-god-level/data-generator)
+
+
+
+500k+ Vendas (OLTP))]
+
+%% 2. Definição do Fluxo (Setas)
+A -- "1. Visita a página / Clica" --> B
+B -- "2. Pergunta JSON (Simples)<br/>{ measures: [...], dimensions: [...] }" --> C
+C -- "3. Query SQL Otimizada (Complexa)<br/>(com JOINs e GROUP BY)" --> D
+D -- "4. Dados Agregados" --> C
+C -- "5. Resposta JSON Pronta" --> B
+B -- "6. Renderiza Gráfico Interativo" --> A
+
+
+```
 
 ## 3. A Solução Focada no Usuário (UX/UI)
 
@@ -105,7 +152,7 @@ Solução: A Página Home (/) mostra um Card de KPI com o faturamento dos últim
 
 Resultado (Print da Solução):
 
-![Resultado da Pergunta 1](screenshots\print1-overview-6-meses.png)
+![Resultado da Pergunta 1](screenshots/print1-overview-6-meses.png)
 
 Pergunta 2: "Identificar os 10 produtos mais vendidos no delivery"
 
@@ -114,7 +161,7 @@ Solução: A Página Home (/) mostra um gráfico de barras horizontal com o Top 
 Resultado (Print da Solução):
 
 
-![Resultado da Pergunta 2](screenshots\print2-top-10-chart.png)
+![Resultado da Pergunta 2](screenshots/print2-top-10-chart.png)
 
 Pergunta 3: "Comparar performance de duas lojas"
 
@@ -122,7 +169,7 @@ Solução: A Página Comparar (/comparar) permite que a Maria selecione uma mét
 
 Resultado (Print da Solução):
 
-![Resultado da Pergunta 3](screenshots\print3-comparar-lojas.png)
+![Resultado da Pergunta 3](screenshots/print3-comparar-lojas.png)
 
 Pergunta 4: "Quanto o iFood vende na quinta a noite?"
 
@@ -136,7 +183,7 @@ Filtro: iFood
 
 Resultado (Print da Solução):
 
-![Resultado da Pergunta 4](screenshots\print4-explorar-dados.png)
+![Resultado da Pergunta 4](screenshots/print4-explorar-dados.png)
 
 Pergunta 5: "Exportar relatório para apresentar ao sócio"
 
@@ -144,7 +191,7 @@ Solução: A Página Explorar (/explorar) contém um botão "Exportar para Excel
 
 Resultado (Print da Solução):
 
-![Resultado da Pergunta 5](screenshots\print5-gerar-relatorio.png)
+![Resultado da Pergunta 5](screenshots/print5-gerar-relatorio.png)
 
 ## 6. Próximos Passos (Escalabilidade)
 
