@@ -4,10 +4,12 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm ci --only=production
+RUN npm install
 
-COPY . .
+COPY cube.js .
+COPY model ./model
 
 EXPOSE 4000
 
 CMD ["npm", "start"]
+
