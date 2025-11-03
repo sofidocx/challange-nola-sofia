@@ -1,15 +1,13 @@
-FROM node:22-alpine
+FROM node:22-bullseye-slim
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm ci --only=production
 
-COPY cube.js .
-COPY model ./model
+COPY . .
 
 EXPOSE 4000
 
 CMD ["npm", "start"]
-
