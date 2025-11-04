@@ -8,6 +8,8 @@
 
 Esta é a solução full-stack para o desafio de analytics da Nola/Arcca, projetada para resolver a dor central da usuária (Maria) e transformar 500.000+ registros de vendas em insights acionáveis e instantâneos.
 
+https://nola-sofia-frontend-production.up.railway.app/
+
 A solução é um **aplicativo de Business Intelligence (BI)** completo, dividido em três páginas:
 1.  **Visão Geral (`/`)**: Um dashboard "zero cliques" com os KPIs mais importantes e o "Top 10 Produtos".
 2.  **Explorar Dados (`/explorar`)**: Um "construtor de relatórios" (Query Builder) que permite à Maria cruzar métricas, dimensões e filtros dinamicamente.
